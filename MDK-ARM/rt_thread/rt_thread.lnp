@@ -1,0 +1,26 @@
+--cpu=Cortex-M4.fp.sp
+"rt_thread\startup_stm32f407xx.o"
+"rt_thread\main.o"
+"rt_thread\gpio.o"
+"rt_thread\stm32f4xx_it.o"
+"rt_thread\stm32f4xx_hal_msp.o"
+"rt_thread\stm32f4xx_hal_tim.o"
+"rt_thread\stm32f4xx_hal_tim_ex.o"
+"rt_thread\stm32f4xx_hal_rcc.o"
+"rt_thread\stm32f4xx_hal_rcc_ex.o"
+"rt_thread\stm32f4xx_hal_flash.o"
+"rt_thread\stm32f4xx_hal_flash_ex.o"
+"rt_thread\stm32f4xx_hal_flash_ramfunc.o"
+"rt_thread\stm32f4xx_hal_gpio.o"
+"rt_thread\stm32f4xx_hal_dma_ex.o"
+"rt_thread\stm32f4xx_hal_dma.o"
+"rt_thread\stm32f4xx_hal_pwr.o"
+"rt_thread\stm32f4xx_hal_pwr_ex.o"
+"rt_thread\stm32f4xx_hal_cortex.o"
+"rt_thread\stm32f4xx_hal.o"
+"rt_thread\stm32f4xx_hal_exti.o"
+"rt_thread\system_stm32f4xx.o"
+--strict --scatter "rt_thread\rt_thread.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "rt_thread.map" -o rt_thread\rt_thread.axf
