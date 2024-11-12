@@ -1,6 +1,19 @@
 #ifndef __rtdef_h
 #define __rtdef_h
 
+/* RT-Thread 错误码重定义 */
+#define RT_EOK                          0               /**< There is no error */
+#define RT_ERROR                        1               /**< A generic error happens */
+#define RT_ETIMEOUT                     2               /**< Timed out */
+#define RT_EFULL                        3               /**< The resource is full */
+#define RT_EEMPTY                       4               /**< The resource is empty */
+#define RT_ENOMEM                       5               /**< No memory */
+#define RT_ENOSYS                       6               /**< No system */
+#define RT_EBUSY                        7               /**< Busy */
+#define RT_EIO                          8               /**< IO error */
+#define RT_EINTR                        9               /**< Interrupted system call */
+#define RT_EINVAL                       10              /**< Invalid argument */
+
 /* RT-Thread 基础数据类型重定义*/
 typedef signed   char                   rt_int8_t;
 typedef signed   short                  rt_int16_t;
@@ -45,18 +58,22 @@ typedef rt_base_t                       rt_off_t;
 
 #define RT_NULL                         (0)
 
-#endif /* __RT_DEF_H__*/
+typedef struct rt_list_node
+{
+	 struct rt_list_node *next;              /* 指向后一个节点 */
+   struct rt_list_node *prev;              /* 指向前一个节点 */	
+}rt_list_t;
 
 typedef struct 
 {
     void        *sp;               /* 线程栈指针 */
     void        *entry;            /* 线程入口地址 */
-    void        *parameter;       /* 线程形参 */
-    void        *stack_addr;      /* 线程起始地址 */
-    rt_uint32_t stack_size;       /* 线程栈大小，单位为字节 */
+    void        *parameter;        /* 线程形参 */
+    void        *stack_addr;       /* 线程起始地址 */
+    rt_uint32_t stack_size;        /* 线程栈大小，单位为字节 */
 
-    rt_list_t   tlist;            /* 线程链表节点 */
+    rt_list_t   tlist;             /* 线程链表节点 */
 }rt_thread,*rt_thread_t;
 
-#endif 
+#endif /* __RT_DEF_H__*/
 
