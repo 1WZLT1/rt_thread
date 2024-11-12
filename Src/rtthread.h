@@ -1,6 +1,7 @@
 #ifndef __rtthread_h
 
 #include <rtdef.h>
+#include <rttype.h>
 #include <cpuport.h>
 
 #ifdef RT_DEBUGING_ASSERT
@@ -13,6 +14,8 @@ if (!(EX))                                                                    \
 #else
 #define RT_ASSERT(EX)
 #endif /* RT_DEBUGING_ASSERT */
+
+rt_inline void rt_list_insert_before(rt_list_t *l, rt_list_t *n);
 
 #endif
 

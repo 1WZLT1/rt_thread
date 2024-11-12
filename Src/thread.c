@@ -10,6 +10,20 @@ rt_inline void rt_list_init(rt_list_t *l)
 }
 
 /*
+ * @brief rt_list_insert_before 双链表尾插|线程插入
+ * @param l                     头节点
+ * @param n                     新节点
+*/
+rt_inline void rt_list_insert_before(rt_list_t *l, rt_list_t *n)
+{
+		l->prev->next = n;
+		n->prev       = l->prev;
+		n->next       = l;
+		l->prev       = n;
+}
+
+
+/*
  * @brief  rt_thread_init     线程初始化
  * @return                    线程初始化是否成功
  * @parame rt_thread *thread  线程对应指针
