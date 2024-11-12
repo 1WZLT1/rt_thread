@@ -29,3 +29,8 @@ rt_thread\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfun
 rt_thread\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 rt_thread\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 rt_thread\main.o: ../Core/Inc/gpio.h
+rt_thread\main.o: ..\Source\scheduler.h
+rt_thread\main.o: ..\Include\rttype.h
+rt_thread\main.o: ..\Include\rtdef.h
+rt_thread\main.o: ..\Src\rtthread.h
+rt_thread\main.o: ..\Libcpu\cpuport.h

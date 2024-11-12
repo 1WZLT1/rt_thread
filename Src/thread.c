@@ -11,17 +11,37 @@ rt_inline void rt_list_init(rt_list_t *l)
 
 /*
  * @brief rt_list_insert_before 双链表尾插|线程插入
- * @param l                     头节点
- * @param n                     新节点
+ * @param l                     头结点
+ * @param n                     新结点
 */
-rt_inline void rt_list_insert_before(rt_list_t *l, rt_list_t *n)
+inline void rt_list_insert_before(rt_list_t *l, rt_list_t *n)
 {
-		l->prev->next = n;
+		l->next       = n;
 		n->prev       = l->prev;
 		n->next       = l;
 		l->prev       = n;
 }
 
+/*
+ * @brief lt_list_len_find 线程长度查询
+ * @param l                头结点
+*/
+inline int lt_list_len_find(rt_list_t *l)
+{	
+	rt_list_t *a;
+	int len = 0;
+	a = l;
+	
+	if(l->next == RT_NULL)return 10;
+	
+	while(a->next != l)
+	{
+		len += 1;
+		a = a->next;
+	}
+	
+	return len;
+}	
 
 /*
  * @brief  rt_thread_init     线程初始化
@@ -43,8 +63,7 @@ rt_err_t rt_thread_init(rt_thread *thread,\
 		RT_ASSERT(thread      != RT_NULL);
 		RT_ASSERT(stack_start != RT_NULL);
 		RT_ASSERT(entry       != RT_NULL);
-		
-		
+	
 		rt_list_init(&thread->tlist);
 		thread->entry      = (void *)entry;
 		thread->parameter  = parameter;

@@ -15,7 +15,14 @@ if (!(EX))                                                                    \
 #define RT_ASSERT(EX)
 #endif /* RT_DEBUGING_ASSERT */
 
-rt_inline void rt_list_insert_before(rt_list_t *l, rt_list_t *n);
 
+rt_err_t rt_thread_init(rt_thread *thread,\
+												void (*entry)(void *parameter),\
+												void 	*parameter,\
+												void  *stack_start,\
+												rt_uint32_t  stack_size
+                        );
+void rt_list_insert_before(rt_list_t *l, rt_list_t *n);
+int lt_list_len_find(rt_list_t *l);
 #endif
 
