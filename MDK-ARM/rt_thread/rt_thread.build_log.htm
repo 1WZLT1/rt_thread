@@ -27,11 +27,12 @@ Project File Date:  11/12/2024
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'rt_thread'
-compiling scheduler.c...
 linking...
-Program Size: Code=2766 RO-data=442 RW-data=20 ZI-data=2940  
-FromELF: creating hex file...
-"rt_thread\rt_thread.axf" - 0 Error(s), 0 Warning(s).
+rt_thread\rt_thread.axf: Error: L6218E: Undefined symbol rt_hw_context_switch_to (referred from scheduler.o).
+Not enough information to list image symbols.
+Not enough information to list load addresses in the image map.
+Finished: 2 information, 0 warning and 1 error messages.
+"rt_thread\rt_thread.axf" - 1 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -55,7 +56,8 @@ Package Vendor: Keil
 
    * Component: ARM::CMSIS:CORE:5.5.0
       Include file:  CMSIS\Core\Include\tz_context.h
-Build Time Elapsed:  00:00:01
+Target not created.
+Build Time Elapsed:  00:00:00
 </pre>
 </body>
 </html>

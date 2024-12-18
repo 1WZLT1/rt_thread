@@ -4,7 +4,7 @@
  * @brief  rt_list_init 链表初始化
  * @parame rt_list_t    指向链表
 */
-rt_inline void rt_list_init(rt_list_t *l)
+inline  void rt_list_init(rt_list_t *l)
 {
     l->next = l->prev = l;
 }
