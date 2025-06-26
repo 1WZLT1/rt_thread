@@ -526,6 +526,11 @@
               <FileType>1</FileType>
               <FilePath>..\Libcpu\cpuport.c</FilePath>
             </File>
+            <File>
+              <FileName>context_rvds.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>..\Libcpu\context_rvds.s</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

@@ -6,7 +6,7 @@
 */
 inline  void rt_list_init(rt_list_t *l)
 {
-    l->next = l->prev = l;
+    l->next = l->prev = l;//头指针指向自己
 }
 
 /*
@@ -16,7 +16,7 @@ inline  void rt_list_init(rt_list_t *l)
 */
 inline void rt_list_insert_before(rt_list_t *l, rt_list_t *n)
 {
-		l->next       = n;
+		l->prev->next = n;
 		n->prev       = l->prev;
 		n->next       = l;
 		l->prev       = n;
@@ -72,7 +72,7 @@ rt_err_t rt_thread_init(rt_thread *thread,\
 	
 		thread->sp = (void *)rt_hw_stack_init(thread->entry,
 																					thread->parameter,
-                                          (void *)((char *)thread->stack_addr + thread->stack_size - 4));/*获取栈顶元素的首地址*/
+                                          (void *)((char *)thread->stack_addr + thread->stack_size - 4));/*主要是为了获取线程栈对应寄存器地址，这些地址是为了任务切换保护现场的关键代码*/
 		
 		return RT_EOK;
 }

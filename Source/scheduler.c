@@ -24,6 +24,7 @@ void rt_system_scheduler_init()
 	}
 }
 
+extern void rt_hw_context_switch_to(rt_uint32_t);
 void rt_system_scheduler_start()
 {
 	 register rt_thread *to_thread;
@@ -39,7 +40,7 @@ void rt_system_scheduler_start()
 }
 
 rt_thread rt_thread_test;
-rt_uint8_t rt_thread_test_stack[1024];
+rt_uint8_t rt_thread_test_stack[1024];/*bss开辟内存作为线程栈*/
 void rt_thread_test_funtion(void *parameter)
 {
 	while(1)
@@ -50,7 +51,7 @@ void rt_thread_test_funtion(void *parameter)
 int len = 0;
 void Test()
 {
-	rt_system_scheduler_init();
+	rt_system_scheduler_init();//初始化 头节点指向自己
 	
 	rt_thread_init(&rt_thread_test,\
 								 &rt_thread_test_funtion,\
@@ -58,9 +59,12 @@ void Test()
 								 &rt_thread_test_stack[0],\
 								 sizeof(rt_thread_test_stack)\
 								 );
+	/*
+				rt_thread_test中存储的值很重要
+	*/
 								 
-	rt_list_insert_before(&rt_thread_priority_table[0],&(rt_thread_test.tlist));
-	len = lt_list_len_find(&rt_thread_priority_table[0]);
+	rt_list_insert_before(&rt_thread_priority_table[0],&(rt_thread_test.tlist));/*往rt_thread_priority_table插入一个结点*/
+//	len = lt_list_len_find(&rt_thread_priority_table[0]);
 								 
 	 rt_system_scheduler_start();
 }

@@ -1,0 +1,190 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000 E000ED08 
+                       SCB_VTOR
+                               EQU              0xE000ED08  ;¥Ê¥¢÷–∂œœÚ¡ø±Ìµÿ÷∑
+                                                            
+    2 00000000 E000ED04 
+                       NVIC_INT_CTRL
+                               EQU              0xE000ED04  ;ICSRºƒ¥Ê∆˜∂‘”¶µÿ÷∑
+                                                            ø…“‘¥•∑¢pendsv÷–∂œ¥
+                                                            •∑¢
+    3 00000000 E000ED20 
+                       NVIC_SYSPRI2
+                               EQU              0xE000ED20  ;…Ë÷√pendsv ”Î sysc
+                                                            tick ÷–∂œ”≈œ»º∂  
+    4 00000000 00FF0000 
+                       NVIC_PENDSV_PRI
+                               EQU              0x00FF0000  ;pendsv”≈œ»º∂
+    5 00000000 10000000 
+                       NVIC_PENDSVSET
+                               EQU              0x10000000
+    6 00000000         
+    7 00000000                 AREA             |.text|, CODE, READONLY, ALIGN=
+2
+    8 00000000                 THUMB
+    9 00000000                 REQUIRE8                     ;∞À◊÷Ω⁄∂‘∆Î
+   10 00000000                 PRESERVE8
+   11 00000000         
+   12 00000000                 EXPORT           rt_hw_context_switch_to
+   13 00000000                 IMPORT           rt_interrupt_to_thread
+   14 00000000                 IMPORT           rt_interrupt_from_thread
+   15 00000000                 IMPORT           rt_thread_switch_interrupt_flag
+   16 00000000         
+   17 00000000         rt_hw_context_switch_to
+   18 00000000         
+   19 00000000 490B            LDR              r1,=rt_interrupt_to_thread
+   20 00000002 6008            STR              r0,[r1]     ;Œ“¿ÌΩ‚µƒ «∞—–Œ≤Œµƒ
+                                                            ÷∏∏¯r1 “≤æÕ «sp÷∏’Î
+                                                            ∂‘”¶µƒµÿ÷∑
+   21 00000004         
+   22 00000004 490B            LDR              r1,=rt_interrupt_from_thread ;±
+                                                            Ì æ∆‰≤ª «µ⁄“ª¥ŒΩ¯»Î
+                                                            œﬂ≥Ã
+   23 00000006 F04F 0001       MOV              r0,#1
+   24 0000000A 6008            STR              r0,[r1]
+   25 0000000C         
+   26 0000000C 490A            LDR              r1,=rt_thread_switch_interrupt_
+flag
+   27 0000000E F04F 0001       MOV              r0,#1
+   28 00000012 6008            STR              r0,[r1]
+   29 00000014         
+   30 00000014 4809            LDR              r0,=NVIC_SYSPRI2
+   31 00000016 F44F 017F       LDR              r1,=NVIC_PENDSV_PRI
+   32 0000001A 6802            LDR              r2,[r0,#0x00]
+   33 0000001C EA41 0102       ORR              r1,r1,r2
+   34 00000020 6001            STR              r1,[r0]
+   35 00000022         
+   36 00000022 4807            LDR              r0,=NVIC_INT_CTRL
+   37 00000024 F04F 5180       LDR              r1,=NVIC_PENDSVSET ;π“∆pendsv
+   38 00000028 6801            LDR              r1,[r0]
+   39 0000002A         
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   40 0000002A B661            CPSIE            F
+   41 0000002C B662            CPSIE            I
+   42 0000002E         
+   43 0000002E 00 00           ALIGN            4
+   44 00000030                 END
+              00000000 
+              00000000 
+              00000000 
+              E000ED20 
+              E000ED04 
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp.sp --apcs=
+interwork --depend=rt_thread\context_rvds.d -ort_thread\context_rvds.o -I.\RTE\
+_rt_thread -IC:\Users\LT\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Inc
+lude -IC:\Users\LT\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\CM
+SIS\Device\ST\STM32F4xx\Include --predefine="__UVISION_VERSION SETA 536" --pred
+efine="_RTE_ SETA 1" --predefine="STM32F407xx SETA 1" --predefine="_RTE_ SETA 1
+" --list=context_rvds.lst ..\Libcpu\context_rvds.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+.text 00000000
+
+Symbol: .text
+   Definitions
+      At line 7 in file ..\Libcpu\context_rvds.s
+   Uses
+      None
+Comment: .text unused
+rt_hw_context_switch_to 00000000
+
+Symbol: rt_hw_context_switch_to
+   Definitions
+      At line 17 in file ..\Libcpu\context_rvds.s
+   Uses
+      At line 12 in file ..\Libcpu\context_rvds.s
+Comment: rt_hw_context_switch_to used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Absolute symbols
+
+NVIC_INT_CTRL E000ED04
+
+Symbol: NVIC_INT_CTRL
+   Definitions
+      At line 2 in file ..\Libcpu\context_rvds.s
+   Uses
+      At line 36 in file ..\Libcpu\context_rvds.s
+Comment: NVIC_INT_CTRL used once
+NVIC_PENDSVSET 10000000
+
+Symbol: NVIC_PENDSVSET
+   Definitions
+      At line 5 in file ..\Libcpu\context_rvds.s
+   Uses
+      At line 37 in file ..\Libcpu\context_rvds.s
+Comment: NVIC_PENDSVSET used once
+NVIC_PENDSV_PRI 00FF0000
+
+Symbol: NVIC_PENDSV_PRI
+   Definitions
+      At line 4 in file ..\Libcpu\context_rvds.s
+   Uses
+      At line 31 in file ..\Libcpu\context_rvds.s
+Comment: NVIC_PENDSV_PRI used once
+NVIC_SYSPRI2 E000ED20
+
+Symbol: NVIC_SYSPRI2
+   Definitions
+      At line 3 in file ..\Libcpu\context_rvds.s
+   Uses
+      At line 30 in file ..\Libcpu\context_rvds.s
+Comment: NVIC_SYSPRI2 used once
+SCB_VTOR E000ED08
+
+Symbol: SCB_VTOR
+   Definitions
+      At line 1 in file ..\Libcpu\context_rvds.s
+   Uses
+      None
+Comment: SCB_VTOR unused
+5 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+External symbols
+
+rt_interrupt_from_thread 00000000
+
+Symbol: rt_interrupt_from_thread
+   Definitions
+      At line 14 in file ..\Libcpu\context_rvds.s
+   Uses
+      At line 22 in file ..\Libcpu\context_rvds.s
+Comment: rt_interrupt_from_thread used once
+rt_interrupt_to_thread 00000000
+
+Symbol: rt_interrupt_to_thread
+   Definitions
+      At line 13 in file ..\Libcpu\context_rvds.s
+   Uses
+      At line 19 in file ..\Libcpu\context_rvds.s
+Comment: rt_interrupt_to_thread used once
+rt_thread_switch_interrupt_flag 00000000
+
+Symbol: rt_thread_switch_interrupt_flag
+   Definitions
+      At line 15 in file ..\Libcpu\context_rvds.s
+   Uses
+      At line 26 in file ..\Libcpu\context_rvds.s
+Comment: rt_thread_switch_interrupt_flag used once
+3 symbols
+346 symbols in table
